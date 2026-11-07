@@ -1,6 +1,7 @@
 package io.github.nuraiza.ratelimiter;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -122,6 +123,7 @@ abstract class RateLimiterContractTest {
     }
 
     @Test
+    @Timeout(10)
     void concurrentRequestsNeverTakeMoreTokensThanExist() throws InterruptedException {
         int capacity = 1_000;
         int threads = 10;

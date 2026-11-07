@@ -24,12 +24,18 @@ class TokenBucketRateLimiterTest extends RateLimiterContractTest {
     }
 
     @Test
-    void clockGoingBackwardsDoesNotRemoveTokens() {
+    void clockGoingBackwardsNeitherRemovesTokensNorStopsRefills() {
         RateLimiter limiter = createLimiter(10, 2.0);
+        assertTrue(limiter.allowRequest(6));
 
         nanoTime.addAndGet(-TimeUnit.SECONDS.toNanos(5));
 
-        assertTrue(limiter.allowRequest(10));
+        assertTrue(limiter.allowRequest(4), "the 4 remaining tokens must still be there");
+
+        advanceMillis(1_000);
+
+        assertTrue(limiter.allowRequest(2), "refills must carry on from the new clock reading");
+        assertFalse(limiter.allowRequest(1));
     }
 
     @Test

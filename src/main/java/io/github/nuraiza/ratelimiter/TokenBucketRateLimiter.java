@@ -48,13 +48,12 @@ public class TokenBucketRateLimiter implements RateLimiter {
     private void refill() {
         long nowNanos = nanoTime.getAsLong();
         long elapsedNanos = nowNanos - lastRefillNanos;
-
-        // Clock went backwards (or no time passed): never remove tokens.
-        if (elapsedNanos <= 0) {
-            return;
-        }
-
         lastRefillNanos = nowNanos;
-        bucket.addElapsedNanos(elapsedNanos);
+
+        // If the clock went backwards, add nothing and measure from the new reading,
+        // so refills carry on instead of waiting for the clock to catch up.
+        if (elapsedNanos > 0) {
+            bucket.addElapsedNanos(elapsedNanos);
+        }
     }
 }

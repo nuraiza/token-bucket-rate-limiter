@@ -2,6 +2,7 @@ package io.github.nuraiza.ratelimiter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +92,7 @@ class ScheduledTokenBucketRateLimiterTest extends RateLimiterContractTest {
     }
 
     @Test
+    @Timeout(10)
     void refillsRacingWithRequestsNeverCreateOrLoseTokens() {
         // 1 token per tick. The capacity is large enough that no refill is ever capped.
         int ticks = 1_000;
@@ -105,7 +107,8 @@ class ScheduledTokenBucketRateLimiterTest extends RateLimiterContractTest {
             for (int i = 0; i < 4; i++) {
                 pool.submit(() -> {
                     awaitQuietly(start);
-                    while (ticking.get()) {
+                    // Also stop when interrupted, so a timeout can shut the pool down.
+                    while (ticking.get() && !Thread.currentThread().isInterrupted()) {
                         if (limiter.allowRequest(1)) {
                             allowed.incrementAndGet();
                         }
