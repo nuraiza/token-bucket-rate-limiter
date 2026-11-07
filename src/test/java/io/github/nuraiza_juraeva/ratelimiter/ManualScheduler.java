@@ -1,4 +1,4 @@
-package org.example;
+package io.github.nuraiza_juraeva.ratelimiter;
 
 import java.util.List;
 import java.util.concurrent.AbstractExecutorService;
