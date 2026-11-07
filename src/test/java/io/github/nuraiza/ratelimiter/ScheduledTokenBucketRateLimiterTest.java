@@ -1,4 +1,4 @@
-package io.github.nuraiza_juraeva.ratelimiter;
+package io.github.nuraiza.ratelimiter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package io.github.nuraiza_juraeva.ratelimiter;
+package io.github.nuraiza.ratelimiter;
 
 /**
  * The token bucket arithmetic shared by both limiters.

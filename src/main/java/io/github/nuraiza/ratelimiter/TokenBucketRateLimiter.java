@@ -1,4 +1,4 @@
-package io.github.nuraiza_juraeva.ratelimiter;
+package io.github.nuraiza.ratelimiter;
 
 import java.util.Objects;
 import java.util.function.LongSupplier;

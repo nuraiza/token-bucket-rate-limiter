@@ -1,6 +1,6 @@
 # Token Bucket Rate Limiter
 
-[![Build](https://github.com/nuraiza-juraeva/token-bucket-rate-limiter/actions/workflows/build.yml/badge.svg)](https://github.com/nuraiza-juraeva/token-bucket-rate-limiter/actions/workflows/build.yml)
+[![Build](https://github.com/nuraiza/token-bucket-rate-limiter/actions/workflows/build.yml/badge.svg)](https://github.com/nuraiza/token-bucket-rate-limiter/actions/workflows/build.yml)
 
 A small Java library for rate limiting with the [token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
 
@@ -29,8 +29,8 @@ A bucket holds up to `capacity` tokens and starts full. Each request takes one o
 ### `TokenBucketRateLimiter`
 
 ```java
-import io.github.nuraiza_juraeva.ratelimiter.RateLimiter;
-import io.github.nuraiza_juraeva.ratelimiter.TokenBucketRateLimiter;
+import io.github.nuraiza.ratelimiter.RateLimiter;
+import io.github.nuraiza.ratelimiter.TokenBucketRateLimiter;
 
 // Bursts of up to 10 requests, then 5 requests per second.
 RateLimiter limiter = new TokenBucketRateLimiter(10, 5.0);
@@ -111,7 +111,7 @@ After `mvn install`, other projects on your machine can use it:
 
 ```xml
 <dependency>
-    <groupId>io.github.nuraiza-juraeva</groupId>
+    <groupId>io.github.nuraiza</groupId>
     <artifactId>token-bucket-rate-limiter</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
@@ -120,13 +120,13 @@ After `mvn install`, other projects on your machine can use it:
 ## Project layout
 
 ```
-src/main/java/io/github/nuraiza_juraeva/ratelimiter/
+src/main/java/io/github/nuraiza/ratelimiter/
     RateLimiter.java                      the interface
     TokenBucketRateLimiter.java           lazy refill from a clock
     ScheduledTokenBucketRateLimiter.java  refill on a shared scheduler
     TokenBucket.java                      shared token arithmetic (package-private)
 
-src/test/java/io/github/nuraiza_juraeva/ratelimiter/
+src/test/java/io/github/nuraiza/ratelimiter/
     RateLimiterContractTest.java          tests every implementation must pass
     TokenBucketRateLimiterTest.java
     ScheduledTokenBucketRateLimiterTest.java

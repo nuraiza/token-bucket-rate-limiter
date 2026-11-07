@@ -1,4 +1,4 @@
-package io.github.nuraiza_juraeva.ratelimiter;
+package io.github.nuraiza.ratelimiter;
 
 /**
  * Decides whether a request may go ahead, based on how many tokens it costs.
