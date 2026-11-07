@@ -1,5 +1,7 @@
 # Token Bucket Rate Limiter
 
+[![Build](https://github.com/nuraiza-juraeva/token-bucket-rate-limiter/actions/workflows/build.yml/badge.svg)](https://github.com/nuraiza-juraeva/token-bucket-rate-limiter/actions/workflows/build.yml)
+
 A small Java library for rate limiting with the [token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
 
 A bucket holds up to `capacity` tokens and starts full. Each request takes one or more tokens; when there are not enough, the request is rejected. Tokens come back at a steady rate, so clients can burst up to the capacity and are then held to the refill rate.
